@@ -4,7 +4,7 @@ import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export default async (formData: FormData) => {
+const uploadSong = async (formData: FormData) => {
   let title = formData.get("title");
   let artist = formData.get("artist");
 
@@ -29,3 +29,5 @@ export default async (formData: FormData) => {
   revalidatePath("/");
   redirect("/");
 };
+
+export default uploadSong;

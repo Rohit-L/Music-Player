@@ -1,6 +1,6 @@
 import uploadSong from "@/app/actions/uploadSong";
 
-export default () => {
+const Page = () => {
   return (
     <div className="h-full flex items-center justify-center">
       <div className="w-full max-w-sm">
@@ -41,3 +41,5 @@ export default () => {
     </div>
   );
 };
+
+export default Page;

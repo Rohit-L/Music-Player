@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Personal Music Library and Player",
 };
 
-export default ({ children }: { children: React.ReactNode }) => (
+const Layout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en">
     <body className={inter.className + " w-full h-screen flex flex-col"}>
       <header className="sticky top-0">
@@ -27,3 +27,5 @@ export default ({ children }: { children: React.ReactNode }) => (
     </body>
   </html>
 );
+
+export default Layout;
