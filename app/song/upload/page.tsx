@@ -1,13 +1,11 @@
 "use client";
 
-import uploadSong from "@/app/actions/uploadSong";
+import createSong from "@/app/actions/createSong";
 import { upload } from "@vercel/blob/client";
-import { useState, useRef, FormEvent } from "react";
-import { type PutBlobResult } from "@vercel/blob";
+import { useRef, FormEvent } from "react";
 
 const Page = () => {
   const inputFileRef = useRef<HTMLInputElement>(null);
-  const [blob, setBlob] = useState<PutBlobResult | null>(null);
 
   const inputTitleRef = useRef<HTMLInputElement>(null);
   const inputArtistRef = useRef<HTMLInputElement>(null);
@@ -25,16 +23,12 @@ const Page = () => {
       throw new Error("Form Incomplete");
     }
 
-    console.log(title);
-    console.log(artist);
-    console.log(file);
-
     const { url, pathname } = await upload(file.name, file, {
       access: "public",
       handleUploadUrl: "/api/upload",
     });
 
-    console.log(url, pathname);
+    const response = await createSong(title, artist, url);
   };
 
   return (

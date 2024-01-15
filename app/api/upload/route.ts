@@ -3,35 +3,12 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request): Promise<NextResponse> {
   const body = (await request.json()) as HandleUploadBody;
-  console.log("POST");
-  console.log(body);
   try {
     const jsonResponse = await handleUpload({
       body,
       request,
-      onBeforeGenerateToken: async (pathname, clientPayload) => {
-        console.log("onBeforeGenerateToken");
-        console.log(pathname);
-        console.log(clientPayload);
-        return {};
-      },
-      onUploadCompleted: async ({ blob, tokenPayload }) => {
-        // Get notified of client upload completion
-        // ⚠️ This will not work on `localhost` websites,
-        // Use ngrok or similar to get the full upload flow
-
-        console.log("onUploadCompleted");
-
-        console.log("blob upload completed", blob, tokenPayload);
-
-        try {
-          // Run any logic after the file upload completed
-          // const { userId } = JSON.parse(tokenPayload);
-          // await db.update({ avatar: blob.url, userId });
-        } catch (error) {
-          throw new Error("Could not update user");
-        }
-      },
+      onBeforeGenerateToken: async () => ({}),
+      onUploadCompleted: async () => {},
     });
 
     return NextResponse.json(jsonResponse);

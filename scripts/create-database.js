@@ -8,7 +8,8 @@ async function seedSongs(client) {
       CREATE TABLE IF NOT EXISTS songs (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         title TEXT NOT NULL,
-        artist TEXT NOT NULL
+        artist TEXT NOT NULL,
+        url TEXT NOT NULL
       );
     `;
 
